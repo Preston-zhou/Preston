@@ -4,7 +4,7 @@
  * @Autor: Preston-zhou
  * @Date: 2020-09-19 11:34:10
  * @LastEditors: Preston-zhou
- * @LastEditTime: 2020-09-19 15:50:16
+ * @LastEditTime: 2020-09-19 18:01:08
 -->
 <!--
  * ......................................&&.........................
@@ -104,6 +104,8 @@
         background-image: url("../assets/index/menu.png");
         background-size: cover;
         cursor: pointer;
+        position: fixed;
+        right: 40px;
     }
 
     .box {
