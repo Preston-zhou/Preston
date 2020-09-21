@@ -4,7 +4,7 @@
  * @Autor: Preston-zhou
  * @Date: 2020-09-19 15:58:59
  * @LastEditors: Preston-zhou
- * @LastEditTime: 2020-09-21 18:02:08
+ * @LastEditTime: 2020-09-21 18:07:23
 -->
 <template>
     <div class="content">
@@ -178,6 +178,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                cursor: pointer;
             }
             .friendLink{
                 margin-left: 20px;
