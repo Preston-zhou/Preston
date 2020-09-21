@@ -4,7 +4,7 @@
  * @Autor: Preston-zhou
  * @Date: 2020-09-19 10:03:05
  * @LastEditors: Preston-zhou
- * @LastEditTime: 2020-09-19 17:45:33
+ * @LastEditTime: 2020-09-21 14:55:28
 -->
 <template>
   <div class="home" ref="home">
@@ -14,7 +14,7 @@
           周培来
         </div>
         <div class="title">
-          剑气纵横三万里，一剑光寒十九洲。
+            Welcome my Blog 
         </div>
         <div class="enterBlog">
           Enter Blog
@@ -37,28 +37,19 @@
     },
     data(){
       return {
-
+        
       }
     },
     mounted() {
-      window.addEventListener('scroll', this.handleScroll, true);  // 监听（绑定）滚轮滚动事件
+   
     },
     methods: {
-        handleArrow(){},
-        handleScroll: function () {
-            let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;  
-            // 设备/屏幕高度
-            let scrollObj = this.$refs.home // 滚动区域
-            let scrollTop = scrollObj.scrollTop; // div 到头部的距离
-            let scrollHeight = scrollObj.scrollHeight; // 滚动条的总高度
-            //滚动条到底部的条件
-            if(scrollTop+clientHeight == scrollHeight){
-                // div 到头部的距离 + 屏幕高度 = 可滚动的总高度
-            }  
-        }
-      },
-      destroyed: function () {
-        window.removeEventListener('scroll', this.handleScroll);   //  离开页面清除（移除）滚轮滚动事件
+        handleArrow(){
+          // console.log(this.$refs.home.clientHeight);
+           $("html,body").animate({
+             scrollTop: this.$refs.home.clientHeight
+           }, 800); //点击按钮向下移动一屏的高度，时间为800毫秒
+        },
       }
   };
 </script>
@@ -90,11 +81,9 @@
         .name {
           font-size: 20px;
         }
-
         .title {
           margin: 20px 0;
         }
-
         .enterBlog {
           width: 100px;
           height: 38px;
@@ -105,7 +94,6 @@
           cursor: pointer;
         }
       }
-
       .arrow {
         width: 100%;
         height: 50px;
@@ -113,7 +101,7 @@
         justify-content: center;
         position: absolute;
         bottom: 20px;
-
+        cursor: pointer;
         .img {
           width: 40px;
           height: 40px;

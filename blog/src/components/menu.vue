@@ -4,7 +4,7 @@
  * @Autor: Preston-zhou
  * @Date: 2020-09-19 11:34:10
  * @LastEditors: Preston-zhou
- * @LastEditTime: 2020-09-19 18:01:08
+ * @LastEditTime: 2020-09-21 14:50:16
 -->
 <!--
  * ......................................&&.........................
@@ -66,7 +66,7 @@
 
 <template>
     <div class="content">
-        <div class="button" @click="handleBox"></div>
+        <div class="button" @click="handleBox" ref="btn"></div>
         <div class="box" v-show="menu">
             <div class="backBtn" @click="backBtn"></div>
             <ul>
@@ -75,6 +75,9 @@
                 <li>留言</li>
             </ul>
         </div>
+        <div class="toTop" @click="goToTop" v-show="isTop">
+            <img src="../assets/index/top01.png" alt="">
+        </div>
     </div>
 </template>
 
@@ -82,8 +85,19 @@
     export default {
         data(){
             return {
-                menu: false
-            }
+                menu: false,
+                isTop: false
+            }   
+
+            
+        },
+        mounted() {
+            // console.log(document.body.clientHeight);  
+            // if(document.body.clientHeight>600){
+            //     console.log('aaa');
+            //     // $('.toTop').fadeIn(600)
+            // }
+            window.addEventListener('scroll', this.handleScroll); //添加监听事件
         },
         methods: {
             handleBox(){
@@ -91,13 +105,41 @@
             },
             backBtn(){
                 this.menu=false
-            }
-        }
+            },
+            // toTop(){
+            //     $("html,body").animate({
+            //         scrollTop: 0
+            //     }, 800); //点击按钮向下移动一屏的高度，时间为800毫秒
+            // },
+            handleScroll() { //监控scrollTop 的值，根据其变化执行相应操作（回到顶部按钮的显示和隐藏）
+                if (document.documentElement.scrollTop >= 300) {
+                    this.isTop = true;
+                    
+                } else {
+                    this.isTop = false;
+                }
+            },
+            goToTop() { //回到顶部方法 点击按钮调用
+                let top = document.documentElement.scrollTop;
+                // 实现滚动效果 
+                const timeTop = setInterval(() => {
+                    document.documentElement.scrollTop = top -= 50;
+                    if (top <= 0) {
+                        clearInterval(timeTop); //清除定时器
+                    }
+                }, 50);
+
+            },
+        },
+        destroyed() {
+            window.removeEventListener('scroll', this.handleScroll); //移除监听事件
+        },
     }
 </script>
 
 <style lang="scss" scoped>
 .content {
+    z-index: 110;
     .button {
         width: 40px;
         height: 40px;
@@ -106,6 +148,16 @@
         cursor: pointer;
         position: fixed;
         right: 40px;
+        z-index: 110;
+        // &::before{
+        //   content: '';
+        //   display: block;  
+        //   width: 50px;
+        //   height: 50px;
+        //   border-radius: 50%;
+        //   border: 1px solid pink;
+        //   transform: translate(-5px,-5px);
+        // }
     }
 
     .box {
@@ -115,8 +167,9 @@
             background-image: url("../assets/index/back.png");
             background-size: cover;
             cursor: pointer;
-            position: relative;
-            z-index: 100;
+            position: fixed;
+            right: 40px;
+            z-index: 110;
         }
         position: relative;
         &::before {
@@ -127,14 +180,27 @@
             background: pink;
             transform: translateZ(0) translateX(45%) skew(-12deg);
             transition: all 1s cubic-bezier(.19,1,.22,1);
+            z-index: 110;
             position: fixed;
             top:0;
             right: 0;
         }
-        ul {
+        &::after {
+            content: '';
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 100;
-            position: absolute;
+        }
+        ul {
+            z-index: 110;
+            position: fixed;
             top: 100px;
+            right: 42px;
             cursor: pointer;
             li{
                 margin: 20px 0;
@@ -142,6 +208,17 @@
                     color:#148bc8; 
                 }
             }
+        }
+    }
+    .toTop {
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 100px;
+        right: 50px;
+        img{
+            width:100%;
+            height: 100%;
         }
     }
 }

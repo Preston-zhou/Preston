@@ -4,7 +4,7 @@
  * @Autor: Preston-zhou
  * @Date: 2020-09-19 14:28:11
  * @LastEditors: Preston-zhou
- * @LastEditTime: 2020-09-19 16:00:48
+ * @LastEditTime: 2020-09-21 16:45:54
 -->
 <template>
     <div class="index">
@@ -35,6 +35,7 @@ import HotArticle from '@/views/HotArticle' // 热门文章
 <style lang="scss" scoped>
 .index{
     position: relative;
+    // background-color: #f8f8f8;
     .menu {
         position: absolute;
         top: 30px;
