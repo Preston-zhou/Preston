@@ -4,7 +4,7 @@
  * @Autor: Preston-zhou
  * @Date: 2020-09-19 15:58:59
  * @LastEditors: Preston-zhou
- * @LastEditTime: 2020-09-21 17:10:59
+ * @LastEditTime: 2020-09-21 18:02:08
 -->
 <template>
     <div class="content">
@@ -78,7 +78,7 @@
                 <div class="about">
                     <span>关于</span>
                 </div>
-                <div class="frientLink">
+                <div class="friendLink">
                     <span>+友情链接</span>
                 </div>
             </div>
@@ -167,6 +167,21 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            >div{
+                width: 200px;
+                height: 40px;
+                color: #fff;
+                border: 1px solid white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .friendLink{
+                margin-left: 20px;
+            }
             &::after {
                 content: '';
                 display: block;
